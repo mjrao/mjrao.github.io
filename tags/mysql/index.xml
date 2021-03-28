@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mysql on ownwiki - Coding &amp; Life</title>
+    <link>/tags/mysql/</link>
+    <description>Recent content in mysql on ownwiki - Coding &amp; Life</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 16 Oct 2018 18:08:11 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker MYSQL 和 Redis 启动脚本</title>
+      <link>/post/2018-10-16/</link>
+      <pubDate>Tue, 16 Oct 2018 18:08:11 +0800</pubDate>
+      
+      <guid>/post/2018-10-16/</guid>
+      <description>redis 1 docker run -p 6379:6379 -v $PWD/redis.conf:/usr/local/etc/redis/redis.conf -v $PWD:/data -v $PWD:/var --name redis_6379 -d redis redis-server /usr/local/etc/redis/redis.conf mysql 1 docker run --name mysql_3306 -v $PWD:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql</description>
+    </item>
+    
+  </channel>
+</rss>

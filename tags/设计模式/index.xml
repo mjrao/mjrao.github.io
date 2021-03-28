@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设计模式 on ownwiki - Coding &amp; Life</title>
+    <link>/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 设计模式 on ownwiki - Coding &amp; Life</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 16 Jan 2020 17:16:57 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>设计模式6大原则你真的懂了吗？</title>
+      <link>/post/2020-01-16/</link>
+      <pubDate>Thu, 16 Jan 2020 17:16:57 +0800</pubDate>
+      
+      <guid>/post/2020-01-16/</guid>
+      <description>前面的文章讲述了设计模式的3大类型，下面讲述一下设计模式遵循的6大原则 单一职责原则 定义 有且只有一个原因引起类的变更 优势 类的复杂性降低，任何职</description>
+    </item>
+    
+    <item>
+      <title>设计模式的类型</title>
+      <link>/post/2020-01-15/</link>
+      <pubDate>Wed, 15 Jan 2020 15:28:21 +0800</pubDate>
+      
+      <guid>/post/2020-01-15/</guid>
+      <description>设计模式已经经历了很长一段时间的发展，它们提供了软件开发过程中面临的一般问题的最佳解决方案。学习这些模式有助于经验不足的开发人员通过一种简单</description>
+    </item>
+    
+    <item>
+      <title>GoF与设计模式</title>
+      <link>/post/2020-01-08/</link>
+      <pubDate>Wed, 08 Jan 2020 15:39:36 +0800</pubDate>
+      
+      <guid>/post/2020-01-08/</guid>
+      <description>在软件编程的过程中，为了解决软件开发过程中对象之间的相互通信，相互依赖的结构关系，达到代码的可重用性，可靠性，会在不同的场景采用不同的设计方</description>
+    </item>
+    
+  </channel>
+</rss>

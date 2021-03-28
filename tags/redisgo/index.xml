@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>redisgo on ownwiki - Coding &amp; Life</title>
+    <link>/tags/redisgo/</link>
+    <description>Recent content in redisgo on ownwiki - Coding &amp; Life</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 06 Nov 2019 17:47:20 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/redisgo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>redisgo加载lua脚本</title>
+      <link>/post/2019-11-06/</link>
+      <pubDate>Wed, 06 Nov 2019 17:47:20 +0800</pubDate>
+      
+      <guid>/post/2019-11-06/</guid>
+      <description>redisgo加载lua脚本参数传递过程中需要注意 script.Do()方法的参数一定要搞对，否则很容易出错， 要么填arg[0], arg[1] 这种形式</description>
+    </item>
+    
+  </channel>
+</rss>

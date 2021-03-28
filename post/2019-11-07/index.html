@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>redis sds - ownwiki - Coding &amp; Life</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="ai0376" /><meta name="description" content="字符串是redis中最为常见的存储数据存储类型，其底层实现是简单的动态字符串sds(simple dynamic string)，可以修改的字符串。 sds 介绍 s" /><meta name="keywords" content="ownwiki, Coding & Life" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.71.1 with theme even" />
+
+
+<link rel="canonical" href="/post/2019-11-07/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.8c3cbcb0324c2bb4875ceccba4007cbad4b4ac8377f33af9953c3e7684534a50.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="redis sds" />
+<meta property="og:description" content="字符串是redis中最为常见的存储数据存储类型，其底层实现是简单的动态字符串sds(simple dynamic string)，可以修改的字符串。 sds 介绍 s" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/2019-11-07/" />
+<meta property="article:published_time" content="2019-11-07T16:13:11+08:00" />
+<meta property="article:modified_time" content="2019-11-07T16:13:11+08:00" />
+<meta itemprop="name" content="redis sds">
+<meta itemprop="description" content="字符串是redis中最为常见的存储数据存储类型，其底层实现是简单的动态字符串sds(simple dynamic string)，可以修改的字符串。 sds 介绍 s">
+<meta itemprop="datePublished" content="2019-11-07T16:13:11&#43;08:00" />
+<meta itemprop="dateModified" content="2019-11-07T16:13:11&#43;08:00" />
+<meta itemprop="wordCount" content="1892">
+
+
+
+<meta itemprop="keywords" content="redis,sds," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="redis sds"/>
+<meta name="twitter:description" content="字符串是redis中最为常见的存储数据存储类型，其底层实现是简单的动态字符串sds(simple dynamic string)，可以修改的字符串。 sds 介绍 s"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">ownwiki - Coding &amp; Life</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/post/">
+        <li class="mobile-menu-item">Posts</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">ownwiki - Coding &amp; Life</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/post/">Posts</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">redis sds</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-11-07 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%8A%80%E6%9C%AF/"> 技术 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#sds-介绍">sds 介绍</a></li>
+    <li><a href="#sds-数据存储结构">sds 数据存储结构</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>字符串是redis中最为常见的存储数据存储类型，其底层实现是简单的动态字符串sds(simple dynamic string)，可以修改的字符串。</p>
+<h2 id="sds-介绍">sds 介绍</h2>
+<p><code>sds</code>本质上是 <code>char *</code>，因为有了表头sdshdr结构的存在，所以sds比传统c字符串在某些方面更加优秀，并且能够兼容传统C字符串。</p>
+<p><code>sds</code>采用预分配存储空间的方式来减少内存的频繁分配，惰性空间释放的策略来优化sds的缩短操作，降低内存重新分配的概率。</p>
+<p>redis 的字符串实现在<code>sds.h</code> <code>sds.c</code> 中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">typedef char *sds;
+
+/* Note: sdshdr5 is never used, we just access the flags byte directly.
+ * However is here to document the layout of type 5 SDS strings. */
+struct __attribute__ ((__packed__)) sdshdr5 {
+    unsigned char flags; /* 3 lsb of type, and 5 msb of string length */
+    char buf[];
+};
+</code></pre></td></tr></table>
+</div>
+</div><p>上述代码来自sds.h</p>
+<ul>
+<li>
+<p><code>__attribute__ ((__packed__))</code></p>
+<p>redis3.2 之后，针对不同长度的字符串引入了不同的sds数据结构，并且强制内存对齐1，将内存对齐的交给统一的内存分配函数，从而达到节省内存的目的</p>
+<p>稍微了解c/c++的人都会了解在结构体建立的是时候，会进行字节对齐操作，所以往往比实际变量占用的字节要多一些，如果我们不想要字节对齐怎么办？</p>
+<p>在结构体声明当中<code>__attribute__ ((__packed__))</code>关键字可以让我们的结构体按照紧凑排列的方式，占用内存。</p>
+<p>如下2种数据结构分别sizeof 将得到不同的结果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">struct  test{
+    unsigned char flags;
+    int value;
+};
+
+struct __attribute__ ((__packed__)) test_{
+    unsigned char flags;
+    int value;
+};
+</code></pre></td></tr></table>
+</div>
+</div><p><code>sizeof(struct test) //size is 8</code></p>
+<p><code>sizeof(struct test_) //size is 5</code></p>
+</li>
+<li>
+<p><code>char buf[]</code></p>
+<p><code>char buf[]</code> 等价与 <code>char buf[0]</code> 在标准C和C++中0长数组如char buf[0]是不允许使用的，因为这从语义逻辑上看，是完全没有意义的。但是，GUN中却允许使用，而且，很多时候，应用在了变长结构体中。对编译器来说，此时长度为0的数组并不占用空间，因为数组名本身不占空间，它只是一个偏移量， 数组名这个符号本身代表了一个不可修改的地址常量。我们可以优雅的将buf称之为柔性数组。</p>
+<p>在结构中，buf是一个数组名；但该数组没有元素；该数组的真实地址<strong>紧随结构体sdshdr5之后</strong>，而这个地址就是结构体后面数据的地址（如果给这个结构体分配的内容大于这个结构体实际大小，后面多余的部分就是这个buf的内容）；这种声明方法可以巧妙的实现C语言里的数组扩展。</p>
+<p>对于0长数组的这个特点，很容易构造出变长结构体，如缓冲区，数据包等等</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">struct Buffer
+{
+    int len;
+    char cData[0];
+};
+</code></pre></td></tr></table>
+</div>
+</div><p>假如我们要发送1024个字节，我们如何构造这个数据包呢?</p>
+<p><code>char *buffer = (char*)malloc(sizeof(Buffer)+1024)</code></p>
+<p>我们首先申请1024字节的空间，其次做一个类型转换如下代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">Buffer *p = (Buffer*)buffer
+p-&gt;len = 1024
+memcpy(p.cData,&#34;1024 data............&#34;,1024)
+send(socket,p,sizeof(Buffer)+1024);//发送数据
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h2 id="sds-数据存储结构">sds 数据存储结构</h2>
+<p>我们摘取其中一个sdshdr32的数据结构来分析redis中sdsh的数据存储结构</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">struct __attribute__ ((__packed__)) sdshdr32 {
+    uint32_t len; /* used */
+    uint32_t alloc; /* excluding the header and null terminator */
+    unsigned char flags; /* 3 lsb of type, 5 unused bits */
+    char buf[];
+};
+</code></pre></td></tr></table>
+</div>
+</div><p><code>sdsnew(const char  *init)</code> 会根据init数据的长度去分配内存，分配内存的大小为<code>s_malloc(hdrlen+initlen+1)</code> 其中 hdrlen 为sdshdr* 的结构体的大小，initlen为传入的<code>init</code> 变量的数据大小或者为<code>sdsnewlen(const void *init, size_t initlen)</code> 传入的<code>initlen</code> 的大小。</p>
+<p><code>sdsnewlen</code> 方法会根据initlen 的数值去通过<code>sdsReqType</code>去确定type的类型，然后根据返回的type数值再通过<code>sdsHdrSize(type)</code>获得<code>hdrlen</code>。 具体代码实现可参见<code>sds.c</code>文件。</p>
+<p>当<code>sds s = sdsnew()</code>之后，其中s的位置并不是内存的起始位置, <code>sh = s_malloc(hdrlen+initlen+1)</code>, 而是偏移了sh + hdrlen 后的位置 <code>s = (char*)sh+hdrlen</code>。</p>
+<p>sds 有一个关键的宏<code>SDS_HDR</code> 定义如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">#define SDS_HDR(T,s) ((struct sdshdr##T *)((s)-(sizeof(struct sdshdr##T))))
+</code></pre></td></tr></table>
+</div>
+</div><p>其中SDS_HDR 能够将s 的指针位置减去 <code>sdshdr##T</code>的大小，从而将指针位置指向<code>sdsnew</code>内存分配的起始位置dh,进而去通过sh去操作<code>sdshdr##T</code>的成员变量。其中T取值为（5，8，16，32，64）</p>
+<ul>
+<li>一个 sds 的内部数据结构</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">    -----------------------------
+    | len | alloc | flags | buf |
+    -----------------------------
+</code></pre></td></tr></table>
+</div>
+</div><p>如上，其中buf位置真正存储了字符数据， 前面十三个位置分别存储了buf相关的sds信息。</p>
+<ul>
+<li><code>len</code>记录当前字节数组的长度（不包括\0），使得获取字符串长度的时间复杂度由O(N)变为了O(1)</li>
+<li><code>alloc</code>记录了当前字节数组总共分配的内存大小（不包括\0）</li>
+<li><code>flags</code>记录了当前字节数组的属性、用来标识到底是sdshdr8还是sdshdr16等</li>
+<li><code>buf</code>保存了字符串真正的值以及末尾的一个\0</li>
+</ul>
+<p>整个sds的内存是连续的，统一开辟的。在大多数操作中，buf内的字符串实体才是操作对象。统一开辟内存能通过buf头指针进行寻址，拿到整个struct的指针，而且通过buf的头指针减1直接就能获取flags的值, <code>flags = s[-1]</code>。</p>
+<p>更详细的sds的分配可参见<code>sds.c</code>中<code>sdsnewlen</code>的实现部分</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">ai0376</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-11-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">Reward</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/reward/wechat.png">
+        <span>wechat</span>
+      </label>
+    
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/redis/">redis</a>
+          <a href="/tags/sds/">sds</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019-12-10/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">mongodb 修改字段类型</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019-11-06/">
+            <span class="next-text nav-default">redisgo加载lua脚本</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2018 - 
+    2021
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">ai0376</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mongo on ownwiki - Coding &amp; Life</title>
+    <link>/tags/mongo/</link>
+    <description>Recent content in mongo on ownwiki - Coding &amp; Life</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 10 Dec 2019 17:57:12 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/mongo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>mongodb 修改字段类型</title>
+      <link>/post/2019-12-10/</link>
+      <pubDate>Tue, 10 Dec 2019 17:57:12 +0800</pubDate>
+      
+      <guid>/post/2019-12-10/</guid>
+      <description>在MongoDB的Collection中存在一些字段 reading 原本应该是string 类型，但是在写入时错误的写成了int，因此需要更改int类型为s</description>
+    </item>
+    
+  </channel>
+</rss>

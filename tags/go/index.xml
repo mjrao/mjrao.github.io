@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>go on ownwiki - Coding &amp; Life</title>
+    <link>/tags/go/</link>
+    <description>Recent content in go on ownwiki - Coding &amp; Life</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 21 Jan 2020 10:09:47 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>golang 数组，切片，集合迭代</title>
+      <link>/post/2020-01-21/</link>
+      <pubDate>Tue, 21 Jan 2020 10:09:47 +0800</pubDate>
+      
+      <guid>/post/2020-01-21/</guid>
+      <description>go 语言中range关键字用于 for 循环中迭代数组(array)、切片(slice)、通道(channel)或集合(map)的元素。在数组和切片中</description>
+    </item>
+    
+    <item>
+      <title>golang 变量的声明的三种方式</title>
+      <link>/post/2020-01-11/</link>
+      <pubDate>Sat, 11 Jan 2020 18:04:05 +0800</pubDate>
+      
+      <guid>/post/2020-01-11/</guid>
+      <description>go 语言变量名由字符、数字、下划线组成，其中首字符不能为数字。其变量名命名规则和C/C++约定一样。 go 语言声明变量方式有三种，也可以简单说有2</description>
+    </item>
+    
+    <item>
+      <title>golang 语法糖 ...</title>
+      <link>/post/2020-01-10/</link>
+      <pubDate>Fri, 10 Jan 2020 16:45:04 +0800</pubDate>
+      
+      <guid>/post/2020-01-10/</guid>
+      <description>go 语言是google 开发的一种静态强类型、编译型、并发型，并具有垃圾回收功能的编程语言。2009年11月正式宣布推出，在2016年，Go被软</description>
+    </item>
+    
+    <item>
+      <title>redisgo加载lua脚本</title>
+      <link>/post/2019-11-06/</link>
+      <pubDate>Wed, 06 Nov 2019 17:47:20 +0800</pubDate>
+      
+      <guid>/post/2019-11-06/</guid>
+      <description>redisgo加载lua脚本参数传递过程中需要注意 script.Do()方法的参数一定要搞对，否则很容易出错， 要么填arg[0], arg[1] 这种形式</description>
+    </item>
+    
+    <item>
+      <title>Golang id和类型绑定并获取新对象</title>
+      <link>/post/2019-01-23/</link>
+      <pubDate>Wed, 23 Jan 2019 17:43:07 +0800</pubDate>
+      
+      <guid>/post/2019-01-23/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 package main import ( &amp;#34;errors&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;reflect&amp;#34; ) type Animal interface { GetName()</description>
+    </item>
+    
+  </channel>
+</rss>

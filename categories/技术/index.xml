@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>技术 on ownwiki - Coding &amp; Life</title>
+    <link>/categories/%E6%8A%80%E6%9C%AF/</link>
+    <description>Recent content in 技术 on ownwiki - Coding &amp; Life</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 22 Sep 2020 16:30:22 +0800</lastBuildDate>
+    
+	<atom:link href="/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>vector map 容器删除</title>
+      <link>/post/2020-09-22/</link>
+      <pubDate>Tue, 22 Sep 2020 16:30:22 +0800</pubDate>
+      
+      <guid>/post/2020-09-22/</guid>
+      <description>vector 删除 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 std::vector&amp;lt;int&amp;gt; v; void erase_vector(int val) { for(auto iter = v.begin(); iter != v.end(); ) { if(*iter &amp;gt; val) { iter = v.erase(iter); } else { iter++; } } } map 删除 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 std::map&amp;lt;int, int&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>golang 数组，切片，集合迭代</title>
+      <link>/post/2020-01-21/</link>
+      <pubDate>Tue, 21 Jan 2020 10:09:47 +0800</pubDate>
+      
+      <guid>/post/2020-01-21/</guid>
+      <description>go 语言中range关键字用于 for 循环中迭代数组(array)、切片(slice)、通道(channel)或集合(map)的元素。在数组和切片中</description>
+    </item>
+    
+    <item>
+      <title>设计模式6大原则你真的懂了吗？</title>
+      <link>/post/2020-01-16/</link>
+      <pubDate>Thu, 16 Jan 2020 17:16:57 +0800</pubDate>
+      
+      <guid>/post/2020-01-16/</guid>
+      <description>前面的文章讲述了设计模式的3大类型，下面讲述一下设计模式遵循的6大原则 单一职责原则 定义 有且只有一个原因引起类的变更 优势 类的复杂性降低，任何职</description>
+    </item>
+    
+    <item>
+      <title>设计模式的类型</title>
+      <link>/post/2020-01-15/</link>
+      <pubDate>Wed, 15 Jan 2020 15:28:21 +0800</pubDate>
+      
+      <guid>/post/2020-01-15/</guid>
+      <description>设计模式已经经历了很长一段时间的发展，它们提供了软件开发过程中面临的一般问题的最佳解决方案。学习这些模式有助于经验不足的开发人员通过一种简单</description>
+    </item>
+    
+    <item>
+      <title>golang 变量的声明的三种方式</title>
+      <link>/post/2020-01-11/</link>
+      <pubDate>Sat, 11 Jan 2020 18:04:05 +0800</pubDate>
+      
+      <guid>/post/2020-01-11/</guid>
+      <description>go 语言变量名由字符、数字、下划线组成，其中首字符不能为数字。其变量名命名规则和C/C++约定一样。 go 语言声明变量方式有三种，也可以简单说有2</description>
+    </item>
+    
+    <item>
+      <title>golang 语法糖 ...</title>
+      <link>/post/2020-01-10/</link>
+      <pubDate>Fri, 10 Jan 2020 16:45:04 +0800</pubDate>
+      
+      <guid>/post/2020-01-10/</guid>
+      <description>go 语言是google 开发的一种静态强类型、编译型、并发型，并具有垃圾回收功能的编程语言。2009年11月正式宣布推出，在2016年，Go被软</description>
+    </item>
+    
+    <item>
+      <title>GoF与设计模式</title>
+      <link>/post/2020-01-08/</link>
+      <pubDate>Wed, 08 Jan 2020 15:39:36 +0800</pubDate>
+      
+      <guid>/post/2020-01-08/</guid>
+      <description>在软件编程的过程中，为了解决软件开发过程中对象之间的相互通信，相互依赖的结构关系，达到代码的可重用性，可靠性，会在不同的场景采用不同的设计方</description>
+    </item>
+    
+    <item>
+      <title>mongodb 修改字段类型</title>
+      <link>/post/2019-12-10/</link>
+      <pubDate>Tue, 10 Dec 2019 17:57:12 +0800</pubDate>
+      
+      <guid>/post/2019-12-10/</guid>
+      <description>在MongoDB的Collection中存在一些字段 reading 原本应该是string 类型，但是在写入时错误的写成了int，因此需要更改int类型为s</description>
+    </item>
+    
+    <item>
+      <title>redis sds</title>
+      <link>/post/2019-11-07/</link>
+      <pubDate>Thu, 07 Nov 2019 16:13:11 +0800</pubDate>
+      
+      <guid>/post/2019-11-07/</guid>
+      <description>字符串是redis中最为常见的存储数据存储类型，其底层实现是简单的动态字符串sds(simple dynamic string)，可以修改的字符串。 sds 介绍 s</description>
+    </item>
+    
+    <item>
+      <title>redisgo加载lua脚本</title>
+      <link>/post/2019-11-06/</link>
+      <pubDate>Wed, 06 Nov 2019 17:47:20 +0800</pubDate>
+      
+      <guid>/post/2019-11-06/</guid>
+      <description>redisgo加载lua脚本参数传递过程中需要注意 script.Do()方法的参数一定要搞对，否则很容易出错， 要么填arg[0], arg[1] 这种形式</description>
+    </item>
+    
+    <item>
+      <title>Golang id和类型绑定并获取新对象</title>
+      <link>/post/2019-01-23/</link>
+      <pubDate>Wed, 23 Jan 2019 17:43:07 +0800</pubDate>
+      
+      <guid>/post/2019-01-23/</guid>
+      <description>1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 package main import ( &amp;#34;errors&amp;#34; &amp;#34;fmt&amp;#34; &amp;#34;reflect&amp;#34; ) type Animal interface { GetName()</description>
+    </item>
+    
+    <item>
+      <title>Docker MYSQL 和 Redis 启动脚本</title>
+      <link>/post/2018-10-16/</link>
+      <pubDate>Tue, 16 Oct 2018 18:08:11 +0800</pubDate>
+      
+      <guid>/post/2018-10-16/</guid>
+      <description>redis 1 docker run -p 6379:6379 -v $PWD/redis.conf:/usr/local/etc/redis/redis.conf -v $PWD:/data -v $PWD:/var --name redis_6379 -d redis redis-server /usr/local/etc/redis/redis.conf mysql 1 docker run --name mysql_3306 -v $PWD:/etc/mysql/conf.d -v $PWD/logs:/logs -v $PWD/data:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -d mysql</description>
+    </item>
+    
+    <item>
+      <title>gbk2utf8</title>
+      <link>/post/2018-09-07/</link>
+      <pubDate>Fri, 07 Sep 2018 11:35:06 +0800</pubDate>
+      
+      <guid>/post/2018-09-07/</guid>
+      <description>gbk转utf8 编码的一段shell脚本 单个文件使用 $./gbk2utf8.sh xx.cpp 文件夹下使用 $./gbk2utf8.sh 可以自己修改 filelist filename: gbk2utf8.sh 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26</description>
+    </item>
+    
+  </channel>
+</rss>

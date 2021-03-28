@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gbk on ownwiki - Coding &amp; Life</title>
+    <link>/tags/gbk/</link>
+    <description>Recent content in gbk on ownwiki - Coding &amp; Life</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 07 Sep 2018 11:35:06 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/gbk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>gbk2utf8</title>
+      <link>/post/2018-09-07/</link>
+      <pubDate>Fri, 07 Sep 2018 11:35:06 +0800</pubDate>
+      
+      <guid>/post/2018-09-07/</guid>
+      <description>gbk转utf8 编码的一段shell脚本 单个文件使用 $./gbk2utf8.sh xx.cpp 文件夹下使用 $./gbk2utf8.sh 可以自己修改 filelist filename: gbk2utf8.sh 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26</description>
+    </item>
+    
+  </channel>
+</rss>
